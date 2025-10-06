@@ -1,8 +1,27 @@
 @import "tailwindcss";
 
+/* DeFi Theme Variables */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* DeFi Color Palette */
+  --defi-bg-primary: #0a0a0a;
+  --defi-bg-secondary: #1a1a2e;
+  --defi-bg-card: #16213e;
+  --defi-bg-card-transparent: rgba(22, 33, 62, 0.8);
+  
+  /* Accent Colors */
+  --defi-electric-blue: #00d4ff;
+  --defi-neon-green: #00ff88;
+  --defi-warning-orange: #ff6b35;
+  --defi-purple-accent: #8b5cf6;
+  
+  /* Text Colors */
+  --defi-text-primary: #ffffff;
+  --defi-text-secondary: #a1a1aa;
+  --defi-text-muted: #71717a;
+  
+  /* Legacy variables for compatibility */
+  --background: var(--defi-bg-primary);
+  --foreground: var(--defi-text-primary);
 }
 
 @theme inline {
@@ -12,15 +31,171 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* DeFi Global Styles */
+body {
+  background: linear-gradient(135deg, var(--defi-bg-primary) 0%, var(--defi-bg-secondary) 100%);
+  color: var(--defi-text-primary);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--defi-bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--defi-electric-blue);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--defi-neon-green);
+}
+
+/* DeFi Utility Classes */
+.defi-gradient {
+  background: linear-gradient(135deg, var(--defi-bg-primary) 0%, var(--defi-bg-secondary) 100%);
+}
+
+.defi-card {
+  background: var(--defi-bg-card-transparent);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease-out;
+}
+
+.defi-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+}
+
+.defi-glow {
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+  transition: box-shadow 0.3s ease-out;
+}
+
+.defi-glow:hover {
+  box-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
+}
+
+.defi-glow-green {
+  box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+  transition: box-shadow 0.3s ease-out;
+}
+
+.defi-glow-green:hover {
+  box-shadow: 0 0 30px rgba(0, 255, 136, 0.5);
+}
+
+.defi-glow-orange {
+  box-shadow: 0 0 20px rgba(255, 107, 53, 0.3);
+  transition: box-shadow 0.3s ease-out;
+}
+
+.defi-glow-orange:hover {
+  box-shadow: 0 0 30px rgba(255, 107, 53, 0.5);
+}
+
+/* Enhanced Interactive Elements */
+.defi-button {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease-out;
+}
+
+.defi-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.5s ease-out;
+}
+
+.defi-button:hover::before {
+  left: 100%;
+}
+
+.defi-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 25px rgba(0, 212, 255, 0.4);
+}
+
+.defi-button:active {
+  transform: translateY(0);
+}
+
+/* Enhanced Focus States */
+.defi-focus:focus-visible {
+  outline: 2px solid var(--defi-electric-blue);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(0, 212, 255, 0.2);
+}
+
+/* Subtle Animations */
+@keyframes defi-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.defi-pulse {
+  animation: defi-pulse 2s ease-in-out infinite;
+}
+
+@keyframes defi-glow-pulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(0, 212, 255, 0.3); }
+  50% { box-shadow: 0 0 30px rgba(0, 212, 255, 0.6); }
+}
+
+.defi-glow-pulse {
+  animation: defi-glow-pulse 2s ease-in-out infinite;
+}
+
+/* Smooth Transitions */
+* {
+  transition: all 0.2s ease-out;
+}
+
+/* Responsive Design Enhancements */
+@media (max-width: 640px) {
+  .defi-card {
+    margin: 0.5rem;
+  }
+  
+  .defi-button {
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+  }
+  
+  .defi-glow:hover {
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@media (max-width: 480px) {
+  .defi-card {
+    padding: 1rem;
+  }
+  
+  .defi-button {
+    padding: 0.625rem 0.875rem;
+    font-size: 0.8rem;
+  }
+}
+
+/* Focus States */
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--defi-electric-blue);
+  outline-offset: 2px;
 }
