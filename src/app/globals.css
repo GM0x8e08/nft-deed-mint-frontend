@@ -1,4 +1,6 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 /* DeFi Theme Variables */
 :root {
@@ -22,13 +24,6 @@
   /* Legacy variables for compatibility */
   --background: var(--defi-bg-primary);
   --foreground: var(--defi-text-primary);
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
 }
 
 /* DeFi Global Styles */
